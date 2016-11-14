@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{a52595e7-cac7-4e46-ae00-05ef5fa307b2}</ProjectGuid>
+        <ProjectHome />
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile />
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="jsconfig.json" />
+        <Content Include="package.json" />
+        <Content Include="README.md" />
+        <Content Include="public\index.html" />
+        <Content Include="public\favicon.ico" />
+        <Content Include="src\index.css" />
+        <Compile Include="src\index.js" />
+        <Compile Include="src\Models\Character.js" />
+        <Compile Include="src\Models\index.js" />
+        <Compile Include="src\Models\UserModel.js" />
+        <Compile Include="src\Views\Auth.js" />
+        <Compile Include="src\Models\Enums\Alignment.js" />
+        <Compile Include="src\Models\Enums\index.js" />
+        <Compile Include="src\Models\Enums\Race.js" />
+        <Compile Include="src\Models\Enums\Size.js" />
+        <Compile Include="src\Redux\reducers\character.js" />
+        <Compile Include="src\Redux\reducers\characters.js" />
+        <Compile Include="src\Redux\reducers\index.js" />
+        <Compile Include="src\Redux\reducers\user.js" />
+        <Content Include="src\Views\App\App.css" />
+        <Content Include="src\Views\App\logo.svg" />
+        <Compile Include="src\Views\App\App.test.js" />
+        <Compile Include="src\Views\App\index.js" />
+        <Compile Include="src\Views\Character\index.js" />
+        <Content Include="src\Views\Characters\characters.css" />
+        <Compile Include="src\Views\Characters\index.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="public" />
+        <Folder Include="src" />
+        <Folder Include="src\Models" />
+        <Folder Include="src\Models\Enums" />
+        <Folder Include="src\Redux" />
+        <Folder Include="src\Redux\reducers" />
+        <Folder Include="src\Views" />
+        <Folder Include="src\Views\App" />
+        <Folder Include="src\Views\Character" />
+        <Folder Include="src\Views\Characters" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>
