@@ -24,7 +24,7 @@ export default function Character(obj) {
             return Object.assign.apply(null, mods)
         },
         Initative: function () {
-            return this.AbilityModifier.Dexterity
+            return this.AbilityModifiers.Dexterity
         }
     }
 
