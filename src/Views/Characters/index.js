@@ -2,28 +2,18 @@ import React, {Component} from 'react'
 import 'whatwg-fetch'
 import './characters.css'
 
-import Models from '../../Models'
+import { connect } from 'react-redux'
 
+import * as actions from '../../Redux/actions'
 class Characters extends Component {
-  static porpTypes = {
+  static propTypes = {
     user: Object,
     router: Object
   }
 
-  constructor (props) {
-    super(props)
-    if (!(this.props.user)) {
-      this.props.router.replace('/')
-    } else {
-      fetch(`/Character?user=${this.props.user._id}`)
-        .then(res => res.json())
-        .then(json => json.map(Models.Character))
-        .then(this.props.charactersUpdate)
-    }
-  }
-
   render () {
     const { characters } = this.props
+    if(this.props.children) return this.props.children
     return (
       <div className='characters'>
         {
@@ -31,7 +21,7 @@ class Characters extends Component {
             <div 
               className='character' 
               key={character._id}
-              onClick={() => this.props.onCharacterSelect(character._id)}
+//              onClick={() => this.props.onCharacterSelect(character._id)}
             >
               <h2>{character.Name}</h2>
               {['Level', 'Classes', 'Race', 'XPCurrent'].map(key => (
@@ -45,4 +35,10 @@ class Characters extends Component {
   }
 }
 
-export default Characters
+export default connect(
+  state => ({
+    user: state.user,
+    characters: state.characters
+  }),
+  actions
+)(Characters)

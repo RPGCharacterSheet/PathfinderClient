@@ -1,6 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class Auth extends Component {
+  static propTypes = {
+    handleLogin: PropTypes.func,
+    handleSignUp: PropTypes.func
+  }
+
   render () {
     return (
       <div>

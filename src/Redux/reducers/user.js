@@ -1,11 +1,12 @@
 
 const actions = {
   'USER_FOUND': (payload, state) => ({ ...state, ...payload }),
-  'USER_REMOVED': () => {}
+  'USER_REMOVED': () => ({ loggedIn: false })
 }
-export default (state = {}, {
+
+export default (state = { loggedIn: false }, {
   type,
   payload
 }) => {
-  return (actions[type] || (() => state || {}))(payload, state)
+  return (actions[type] || (() => state))(payload, state)
 }
