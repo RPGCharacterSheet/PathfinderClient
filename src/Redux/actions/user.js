@@ -45,6 +45,6 @@ export function handleLogin (event) {
     .then(res => res.json())
     .then(json => json.map(m => new Models.Character(m)))
     .then(characters => dispatch(updateCharacters(characters)))
-    .then(() => dispatch(push('/characters')))
+    .then(() => dispatch(push('/character')))
   }
 }

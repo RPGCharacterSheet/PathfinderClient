@@ -1,16 +1,27 @@
+.character-pane {
+    height: 100%;
+    position: relative;
+}
+
 .characters {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+    width: 20%;
 }
 
-.character {
-    width: 20%;
+.character-list {
+    width: 100%;
     border-color: black;
     border-radius: 3px;
     border-style: solid;
 }
-.character:hover {
+.character-list:hover {
   background-color: #aaaaaa;
+}
+
+.character {
+    width: 80%;
 }

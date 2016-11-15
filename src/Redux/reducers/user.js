@@ -1,12 +1,11 @@
+const noop = () => {}
 
 const actions = {
-  'USER_FOUND': (payload, state) => ({ ...state, ...payload }),
+  'USER_FOUND': (state, payload) => ({ ...state, ...payload, loggedIn: true }),
   'USER_REMOVED': () => ({ loggedIn: false })
 }
 
 export default (state = { loggedIn: false }, {
   type,
   payload
-}) => {
-  return (actions[type] || (() => state))(payload, state)
-}
+}) => (actions[type] || noop)(state, payload) || state

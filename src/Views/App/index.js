@@ -9,10 +9,6 @@ import { connect } from 'react-redux'
 import Auth from '../Auth'
 
 class App extends Component {
-  static PropTypes = {
-    router: Object,
-    location: Object
-  }
 
   render () {
     return (
@@ -22,7 +18,7 @@ class App extends Component {
           <h2>Welcome to Pathfinder</h2>
           <span>
             {
-              this.props.user.UserName
+              this.props.user.loggedIn
                 ? `Hello ${this.props.user.UserName}!`
                 : <Auth handleLogin={this.props.handleLogin} handleSignUp={this.props.handleSignUp} />
             }
