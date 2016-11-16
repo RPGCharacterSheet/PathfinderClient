@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../Redux/actions'
 class Character extends Component {
   render () {
-    const { params: { id }, characters } = this.props
-    const character = characters.find(character => character._id === id)
+    const { character } = this.props
     return (
       <div>
         <h1>{character.Name}</h1>
@@ -21,4 +22,9 @@ class Character extends Component {
   }
 }
 
-export default Character
+export default connect(
+  state => ({
+    character: state.characters.selected
+  }),
+  actions
+)(Character)
