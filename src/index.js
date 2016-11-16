@@ -7,10 +7,9 @@ import './index.css'
 
 import { Router, Route, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import { loadState, saveState } from './Redux/middleware'
+import middleware, { loadState, saveState } from './Redux/middleware'
 
 import reducers from './Redux/reducers'
 
@@ -23,7 +22,7 @@ const store = createStore(
     routing: routerReducer
   }),
   loadState(),
-  composeEnhancers(applyMiddleware(thunk, routerMiddleware(browserHistory)))
+  composeEnhancers(applyMiddleware(...middleware))
 )
 
 store.subscribe(() => saveState(store.getState()))

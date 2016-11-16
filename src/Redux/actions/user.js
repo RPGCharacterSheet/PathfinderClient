@@ -11,27 +11,18 @@ export function userFound (user) {
   }
 }
 
-
-export function handleSignUp (event) {
-  event.preventDefault()
-  return (dispatch, getState) => {
-
-  }
-}
-
 export function updateCharacters (characters) {
   return {
-    type: 'CHARACTER_UPDATE',
+    type: 'CHARACTERS_ADD',
     payload: characters
   }
 }
 
-export function handleLogin (event) {
-  event.preventDefault()
+function getUser (url, event) {
   return (dispatch, getState) => {
     const body = Array.from(new FormData(event.target))
       .reduce((obj, [key, value]) => Object.assign(obj, { [key]: value }), {})
-    fetch('/User', {
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,10 +31,21 @@ export function handleLogin (event) {
     })
     .then(res => res.json())
     .then(json => new UserModel(json))
-    .then((user) => { userFound(user); return user })
+    .then((user) => { dispatch(userFound(user)); return user })
     .then((user) => fetch(`/Character?user=${user._id}`))
     .then(res => res.json())
+    .then(characters => characters.map(char => ({ ...char, _id: char._id['$oid'] })))
     .then(characters => dispatch(updateCharacters(characters)))
     .then(() => dispatch(push('/character')))
   }
+}
+
+export function handleSignUp (event) {
+  event.preventDefault()
+  return getUser('/User/Create', event)
+}
+
+export function handleLogin (event) {
+  event.preventDefault()
+  return getUser('/User', event)
 }

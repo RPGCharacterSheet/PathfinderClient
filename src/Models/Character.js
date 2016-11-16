@@ -5,7 +5,6 @@ const { Race, Size, Alignment } = Enums
 export default class Character {
   constructor (obj) {
     Object.assign(this, obj, {
-      _id: obj._id['$oid'],
       Owner: obj.Owner['$oid'],
       Race: Race[obj.Race],
       Size: Size[obj.Size],
