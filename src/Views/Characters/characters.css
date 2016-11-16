@@ -31,7 +31,15 @@
     border-radius: 3px;
     border-style: solid;
     margin: 7px 29px 7px 0px;
+
+    transition: all 150ms ease-in-out;
 }
+
+.character-list.active {
+    background-color: #cccccc;
+    margin: 7px 0px 7px 29px;
+}
+
 .character-list:hover {
   background-color: #aaaaaa;
 }

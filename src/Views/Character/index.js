@@ -1,7 +1,9 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 
 import { connect } from 'react-redux'
 import * as actions from '../../Redux/actions'
+
+import ChangableInput from './ChangableInput'
 
 import Models from '../../Models'
 class Character extends Component {
@@ -9,7 +11,13 @@ class Character extends Component {
     const character = new Models.Character(this.props.character)
     return (
       <div>
-        <h1>{character.Name}</h1>
+        <h1>
+          <ChangableInput
+            label='Name'
+            value={character.Name}
+            onChange={(event) => this.props.updateCharacter({ Name: event.target.value })}
+          />
+        </h1>
         <div className='abilities'>
           {Object.keys(character.AbilityScores).map(ability => (
             <div key={ability}>
@@ -23,10 +31,14 @@ class Character extends Component {
     )
   }
 }
+Character.propTypes = {
+  character: PropTypes.object,
+  updateCharacter: PropTypes.func
+}
 
 export default connect(
   state => ({
-    character: state.characters.selected
+    character: state.characters.all.find(character => character._id === state.characters.selected)
   }),
   actions
 )(Character)
