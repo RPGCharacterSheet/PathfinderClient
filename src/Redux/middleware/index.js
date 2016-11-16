@@ -21,17 +21,21 @@ export function saveState (state) {
 }
 
 const characterUpdate = store => next => action => {
-  if (action.type === 'CHARACTER_UPDATE') {
-    const { user, characters: { selected } } = next(action)
+  const a = next(action)
+
+  if (action.type === 'UPDATE_CHARACTER') {
+    const { user, characters: { all, selected } } = store.getState()
+    const character = all.find(c => c._id === selected)
+
     fetch('/Character/Edit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ character: selected, user })
+      body: JSON.stringify({ user: user._id, character: { ...character, Owner: character.Owner['$oid'] } })
     })
   }
-  return next(action)
+  return a
 }
 
 

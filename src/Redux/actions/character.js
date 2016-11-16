@@ -16,7 +16,7 @@ export function setCharacter (id) {
 
 export function updateCharacter (payload) {
   return {
-    type: 'UPDATE_CHARCTER',
+    type: 'UPDATE_CHARACTER',
     payload
   }
 }

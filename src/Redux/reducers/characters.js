@@ -9,7 +9,7 @@ const actions = {
   }),
   'CHARCTER_ADD': (state, payload) => ({ ...state, all: [...state.all, payload] }),
   'CHARACTER_SELECT': (state, payload) => ({ ...state, selected: payload }),
-  'UPDATE_CHARCTER': (state, payload) => ({
+  'UPDATE_CHARACTER': (state, payload) => ({
     ...state,
     all: state.all.map(character => {
       return (character._id === state.selected)
