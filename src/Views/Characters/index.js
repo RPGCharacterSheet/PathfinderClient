@@ -1,31 +1,24 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
+import CharacterListItem from './characterListItem'
 import 'whatwg-fetch'
 import './characters.css'
-
 import { connect } from 'react-redux'
-
 import * as actions from '../../Redux/actions'
+
+
 class Characters extends Component {
 
   render () {
-    const { characters: { all: characters } } = this.props
+    const { characters: { all: characters, selected } } = this.props
+
     return (
       <section className='character-pane'>
         <ul className='characters'>
-        {
-          characters.map(character => (
-            <li
-              className='character-list'
-              key={character._id}
-              onClick={() => this.props.onCharacterSelect(character._id)}
-            >
-              <h2>{character.Name}</h2>
-              {['Level', 'Classes', 'Race', 'XPCurrent'].map(key => (
-                <div key={key}>{`${key}: ${character[key]}`}</div>
-              ))}
-            </li>
-          ))
-        }
+          {
+            characters.map(character => (
+              <CharacterListItem active={character._id === selected} character={character} onCharacterSelect={this.props.onCharacterSelect} />
+            ))
+          }
         </ul>
         <div className='character'>
           {this.props.children}
@@ -33,6 +26,11 @@ class Characters extends Component {
       </section>
     )
   }
+}
+Characters.propTypes = {
+  children: PropTypes.element,
+  onCharacterSelect: PropTypes.func,
+  characters: PropTypes.object
 }
 
 export default connect(
