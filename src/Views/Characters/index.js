@@ -14,8 +14,8 @@ class Characters extends Component {
         <ul className='characters'>
         {
           characters.map(character => (
-            <li 
-              className='character-list' 
+            <li
+              className='character-list'
               key={character._id}
               onClick={() => this.props.onCharacterSelect(character._id)}
             >
