@@ -43,7 +43,6 @@ export function handleLogin (event) {
     .then((user) => { userFound(user); return user })
     .then((user) => fetch(`/Character?user=${user._id}`))
     .then(res => res.json())
-    .then(json => json.map(m => new Models.Character(m)))
     .then(characters => dispatch(updateCharacters(characters)))
     .then(() => dispatch(push('/character')))
   }
