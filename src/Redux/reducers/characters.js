@@ -16,6 +16,14 @@ const actions = {
         ? { ...character, ...payload }
         : character
     })
+  }),
+  'UPDATE_CHARACTER_ABILITY': (state, payload) => ({
+    ...state,
+    all: state.all.map(character => {
+      return (character._id === state.selected)
+        ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload } }
+        : character
+    })
   })
 }
 export default (state = { all: [], selected: 0 }, {

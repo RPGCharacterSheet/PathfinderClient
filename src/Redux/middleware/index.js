@@ -20,10 +20,12 @@ export function saveState (state) {
   }
 }
 
+const updateTypes = ['UPDATE_CHARACTER_ABILITY', 'UPDATE_CHARACTER']
+
 const characterUpdate = store => next => action => {
   const a = next(action)
 
-  if (action.type === 'UPDATE_CHARACTER') {
+  if (updateTypes.indexOf(action.type) >= 0) {
     const { user, characters: { all, selected } } = store.getState()
     const character = all.find(c => c._id === selected)
 

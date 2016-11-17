@@ -34,7 +34,7 @@ function getUser (url, event) {
     .then((user) => { dispatch(userFound(user)); return user })
     .then((user) => fetch(`/Character?user=${user._id}`))
     .then(res => res.json())
-    .then(characters => characters.map(char => ({ ...char, _id: char._id['$oid'] })))
+    .then(characters => characters.map(char => ({ ...char, _id: char._id['$oid'], Owner: char.Owner['$oid'] })))
     .then(characters => dispatch(updateCharacters(characters)))
     .then(() => dispatch(push('/character')))
   }

@@ -1,0 +1,20 @@
+.character-modifier {
+  border: 2px solid black;
+}
+
+.changable-input {
+
+}
+
+.input-label {
+  margin: 0 auto;
+}
+
+.abilities {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.ability-header {
+  align-self: row;
+}

@@ -20,3 +20,10 @@ export function updateCharacter (payload) {
     payload
   }
 }
+
+export function updateCharacterAbility (payload) {
+  return {
+    type: 'UPDATE_CHARACTER_ABILITY',
+    payload
+  }
+}

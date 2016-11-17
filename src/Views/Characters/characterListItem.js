@@ -18,7 +18,7 @@ class CharacterListItem extends Component {
         <h2>{character.Name}</h2>
         {
           ['Level', 'Classes', 'Race', 'XPCurrent'].map(key => (
-            <div key={key + character._id['$oid']}>{`${key}: ${character[key]}`}</div>
+            <div key={key + character._id}>{`${key}: ${character[key]}`}</div>
           ))
         }
       </li>

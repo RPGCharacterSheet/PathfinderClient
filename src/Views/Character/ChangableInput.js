@@ -7,13 +7,13 @@ class ChangableInput extends Component {
   }
 
   render () {
-    const { label, value, onChange } = this.props
+    const { label, value, onChange, type = 'text' } = this.props
     return (
-      <div>
-        <label>
+      <div className='changable-input'>
+        <label className='input-label'>
           {label}
         </label>
-        <input onChange={onChange} value={value} />
+        <input type={type} onChange={(event) => event.target.value ? onChange(event.target.value) : null} value={value} />
       </div>
     )
   }
@@ -22,7 +22,8 @@ class ChangableInput extends Component {
 ChangableInput.propTypes = {
   label: PropTypes.string,
   value: PropTypes.any,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  type: PropTypes.string
 }
 
 export default ChangableInput

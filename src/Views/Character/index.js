@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 
+import './character.css'
+
 import { connect } from 'react-redux'
 import * as actions from '../../Redux/actions'
 
@@ -15,17 +17,29 @@ class Character extends Component {
           <ChangableInput
             label='Name'
             value={character.Name}
-            onChange={(event) => this.props.updateCharacter({ Name: event.target.value })}
+            onChange={(Name) => this.props.updateCharacter({ Name })}
           />
         </h1>
+        <h2>
+          Abilities
+        </h2>
         <div className='abilities'>
-          {Object.keys(character.AbilityScores).map(ability => (
-            <div key={ability}>
-              <p>{ability}</p>
-              <p>Score: {character.AbilityScores[ability]}</p>
-              <p>Modifier: {character.AbilityModifiers[ability]}</p>
-            </div>
-          ))}
+          {
+            Object.keys(character.AbilityScores).map(ability => (
+              <div key={ability} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <span>{ability}</span>
+                <input
+                  style={{width: '40px'}}
+                  type='number'
+                  value={character.AbilityScores[ability]}
+                  onChange={({ target: { value } }) => this.props.updateCharacterAbility({ [ability]: value })}
+                />
+                <span className='character-modifier' style={{width: '40px'}}>
+                  {character.AbilityModifiers[ability]}
+                </span>
+              </div>
+            ))
+          }
         </div>
       </div>
     )
@@ -33,7 +47,8 @@ class Character extends Component {
 }
 Character.propTypes = {
   character: PropTypes.object,
-  updateCharacter: PropTypes.func
+  updateCharacter: PropTypes.func,
+  updateCharacterAbility: PropTypes.func
 }
 
 export default connect(
