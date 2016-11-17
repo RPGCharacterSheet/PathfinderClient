@@ -29,12 +29,12 @@ class Character extends Component {
               <div key={ability} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <span>{ability}</span>
                 <input
-                  style={{width: '40px'}}
+                  style={{width: '100%', margin: '6px 0px', textAlign: 'center'}}
                   type='number'
                   value={character.AbilityScores[ability]}
                   onChange={({ target: { value } }) => this.props.updateCharacterAbility({ [ability]: value })}
                 />
-                <span className='character-modifier' style={{width: '40px'}}>
+                <span className='character-modifier' style={{width: '100%', textAlign: 'center'}}>
                   {character.AbilityModifiers[ability]}
                 </span>
               </div>
