@@ -9,14 +9,14 @@ import * as actions from '../../Redux/actions'
 class Characters extends Component {
 
   render () {
-    const { characters: { all: characters, selected } } = this.props
+    const { characters } = this.props
 
     return (
       <section className='character-pane'>
         <ul className='characters'>
           {
             characters.map(character => (
-              <CharacterListItem active={character._id === selected} character={character} onCharacterSelect={this.props.onCharacterSelect} />
+              <CharacterListItem active={character._id['$oid'] === this.props.routeParams.id} character={character} onCharacterSelect={this.props.onCharacterSelect} />
             ))
           }
         </ul>
@@ -30,7 +30,8 @@ class Characters extends Component {
 Characters.propTypes = {
   children: PropTypes.element,
   onCharacterSelect: PropTypes.func,
-  characters: PropTypes.object
+  characters: PropTypes.object,
+  routeParams: PropTypes.object
 }
 
 export default connect(

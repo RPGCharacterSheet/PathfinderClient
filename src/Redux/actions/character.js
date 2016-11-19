@@ -14,16 +14,22 @@ export function setCharacter (id) {
   }
 }
 
-export function updateCharacter (payload) {
+export function updateCharacter (selected, update) {
   return {
     type: 'UPDATE_CHARACTER',
-    payload
+    payload: {
+      selected,
+      update
+    }
   }
 }
 
-export function updateCharacterAbility (payload) {
+export function updateCharacterAbility (selected, update) {
   return {
     type: 'UPDATE_CHARACTER_ABILITY',
-    payload
+    payload: {
+      selected,
+      update
+    }
   }
 }

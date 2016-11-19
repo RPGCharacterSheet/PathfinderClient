@@ -26,8 +26,9 @@ const characterUpdate = store => next => action => {
   const a = next(action)
 
   if (updateTypes.indexOf(action.type) >= 0) {
-    const { user, characters: { all, selected } } = store.getState()
-    const character = all.find(c => c._id === selected)
+    const { user, characters } = store.getState()
+    const { payload: { selected } } = action
+    const character = characters.find(c => c._id['$oid'] === selected)
 
     fetch('/Character/Edit', {
       method: 'POST',

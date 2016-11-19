@@ -49,3 +49,10 @@ export function handleLogin (event) {
   event.preventDefault()
   return getUser('/User', event)
 }
+
+export function handleLogOut (event) {
+  event.preventDefault()
+  return {
+    type: 'CLEAR_USER'
+  }
+}

@@ -13,7 +13,7 @@ class ChangableInput extends Component {
         <label className='input-label'>
           {label}
         </label>
-        <input type={type} onChange={(event) => event.target.value ? onChange(event.target.value) : null} value={value} />
+        <input type={type} onChange={event => onChange(event.target.value)} value={value} />
       </div>
     )
   }

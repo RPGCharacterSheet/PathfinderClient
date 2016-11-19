@@ -1,6 +1,6 @@
 export default class UserModel {
   constructor(obj){
-    Object.assign(this, {
+    Object.assign(this, obj, {
       _id: obj._id['$oid']
     })
   }

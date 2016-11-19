@@ -10,17 +10,18 @@ import ChangableInput from './ChangableInput'
 import Models from '../../Models'
 class Character extends Component {
   render () {
-    const character = new Models.Character(this.props.character)
+    const selected = this.props.routeParams.id
+    const character = new Models.Character(this.props.characters.find(ch => ch._id === selected))
     return (
       <div>
         <h1>
           <ChangableInput
             label='Name'
             value={character.Name}
-            onChange={(Name) => this.props.updateCharacter({ Name })}
+            onChange={(Name) => this.props.updateCharacter(selected, { Name })}
           />
         </h1>
-        <h2>
+        <h2 style={{textAlign: 'center'}}>
           Abilities
         </h2>
         <div className='abilities'>
@@ -32,7 +33,7 @@ class Character extends Component {
                   style={{width: '100%', margin: '6px 0px', textAlign: 'center'}}
                   type='number'
                   value={character.AbilityScores[ability]}
-                  onChange={({ target: { value } }) => this.props.updateCharacterAbility({ [ability]: value })}
+                  onChange={({ target: { value } }) => this.props.updateCharacterAbility(selected, { [ability]: value })}
                 />
                 <span className='character-modifier' style={{width: '100%', textAlign: 'center'}}>
                   {character.AbilityModifiers[ability]}
@@ -47,13 +48,14 @@ class Character extends Component {
 }
 Character.propTypes = {
   character: PropTypes.object,
+  updateCharacterAbility: PropTypes.func,
   updateCharacter: PropTypes.func,
-  updateCharacterAbility: PropTypes.func
+  routerParams: PropTypes.object
 }
 
 export default connect(
   state => ({
-    character: state.characters.all.find(character => character._id === state.characters.selected)
+    characters: state.characters
   }),
   actions
 )(Character)

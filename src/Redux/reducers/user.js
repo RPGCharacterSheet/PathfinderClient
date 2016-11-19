@@ -2,7 +2,7 @@ const noop = () => {}
 
 const actions = {
   'USER_FOUND': (state, payload) => ({ ...state, ...payload, loggedIn: true }),
-  'USER_REMOVED': () => ({ loggedIn: false })
+  'CLEAR_USER': () => ({ loggedIn: false })
 }
 
 export default (state = { loggedIn: false }, {

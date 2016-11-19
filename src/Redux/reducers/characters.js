@@ -1,32 +1,27 @@
 const noop = () => {}
 const actions = {
-  'CHARACTERS_ADD': (state, payload) => ({
-    ...state,
-    all: state.all.concat(
+  'CHARACTERS_ADD': (state, payload) => state.all.concat(
       payload.filter(
         character => !state.all.find(
-          old => old._id === character._id)))
+          old => old._id === character._id))),
+
+  'CHARCTER_ADD': (state, payload) => [...state.all, payload],
+
+  'UPDATE_CHARACTER': (state, payload) => state.map(character => {
+    return (character._id['$oid'] === payload.selected)
+      ? { ...character, ...payload.update }
+      : character
   }),
-  'CHARCTER_ADD': (state, payload) => ({ ...state, all: [...state.all, payload] }),
-  'CHARACTER_SELECT': (state, payload) => ({ ...state, selected: payload }),
-  'UPDATE_CHARACTER': (state, payload) => ({
-    ...state,
-    all: state.all.map(character => {
-      return (character._id === state.selected)
-        ? { ...character, ...payload }
-        : character
-    })
+
+  'UPDATE_CHARACTER_ABILITY': (state, payload) => state.map(character => {
+    return (character._id['$oid'] === payload.selected)
+      ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload.upate } }
+      : character
   }),
-  'UPDATE_CHARACTER_ABILITY': (state, payload) => ({
-    ...state,
-    all: state.all.map(character => {
-      return (character._id === state.selected)
-        ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload } }
-        : character
-    })
-  })
+
+  'CLEAR_USER': (state, payload) => []
 }
-export default (state = { all: [], selected: 0 }, {
+export default (state = [], {
   type,
   payload
 }) => (actions[type] || noop)(state, payload) || state

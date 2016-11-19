@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -19,7 +19,12 @@ class App extends Component {
           <span>
             {
               this.props.user.loggedIn
-                ? `Hello ${this.props.user.UserName}!`
+                ? (
+                  <span>
+                    Hello {this.props.user.UserName}!
+                    <button onClick={this.props.handleLogOut} >Log Out</button>
+                  </span>
+                )
                 : <Auth handleLogin={this.props.handleLogin} handleSignUp={this.props.handleSignUp} />
             }
           </span>
@@ -27,6 +32,12 @@ class App extends Component {
       </div>
     )
   }
+}
+App.propTypes = {
+  user: PropTypes.object,
+  handleLogin: PropTypes.func,
+  handleSignUp: PropTypes.func,
+  handleLogOut: PropTypes.func
 }
 
 export default connect(
