@@ -16,7 +16,7 @@ class Characters extends Component {
         <ul className='characters'>
           {
             characters.map(character => (
-              <CharacterListItem active={character._id['$oid'] === this.props.routeParams.id} character={character} onCharacterSelect={this.props.onCharacterSelect} />
+              <CharacterListItem active={character._id === this.props.router.params.id} character={character} onCharacterSelect={this.props.onCharacterSelect} />
             ))
           }
         </ul>
@@ -31,7 +31,7 @@ Characters.propTypes = {
   children: PropTypes.element,
   onCharacterSelect: PropTypes.func,
   characters: PropTypes.object,
-  routeParams: PropTypes.object
+  router: PropTypes.object
 }
 
 export default connect(

@@ -28,14 +28,14 @@ const characterUpdate = store => next => action => {
   if (updateTypes.indexOf(action.type) >= 0) {
     const { user, characters } = store.getState()
     const { payload: { selected } } = action
-    const character = characters.find(c => c._id['$oid'] === selected)
+    const character = characters.find(c => c._id === selected)
 
     fetch('/Character/Edit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ user: user._id, character: { ...character, Owner: character.Owner['$oid'] } })
+      body: JSON.stringify({ user: user._id, character: { ...character, Owner: character.Owner } })
     })
   }
   return a

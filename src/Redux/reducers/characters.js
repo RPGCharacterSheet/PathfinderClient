@@ -8,13 +8,13 @@ const actions = {
   'CHARCTER_ADD': (state, payload) => [...state.all, payload],
 
   'UPDATE_CHARACTER': (state, payload) => state.map(character => {
-    return (character._id['$oid'] === payload.selected)
+    return (character._id === payload.selected)
       ? { ...character, ...payload.update }
       : character
   }),
 
   'UPDATE_CHARACTER_ABILITY': (state, payload) => state.map(character => {
-    return (character._id['$oid'] === payload.selected)
+    return (character._id === payload.selected)
       ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload.upate } }
       : character
   }),
