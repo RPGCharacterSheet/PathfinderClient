@@ -1,11 +1,11 @@
 const noop = () => {}
 const actions = {
-  'CHARACTERS_ADD': (state, payload) => state.all.concat(
+  'CHARACTERS_ADD': (state, payload) => state.concat(
       payload.filter(
-        character => !state.all.find(
+        character => !state.find(
           old => old._id === character._id))),
 
-  'CHARCTER_ADD': (state, payload) => [...state.all, payload],
+  'CHARACTER_ADD': (state, payload) => [...state.all, payload],
 
   'UPDATE_CHARACTER': (state, payload) => state.map(character => {
     return (character._id === payload.selected)
