@@ -7,7 +7,8 @@ export default class Character {
     Object.assign(this, obj, {
       Race: Race[obj.Race],
       Size: Size[obj.Size],
-      Alignment: Alignment[obj.Alignment]
+      Alignment: Alignment[obj.Alignment],
+
     })
   }
 
@@ -16,9 +17,5 @@ export default class Character {
   get AbilityModifiers () {
     const mods = Object.keys(this.AbilityScores).map(key => ({ [key]: this.GetAbilityModifier(this.AbilityScores[key]) }))
     return Object.assign.apply(null, mods)
-  }
-
-  get Initiative () {
-    return this.AbilityModifiers.Dexterity
   }
 }
