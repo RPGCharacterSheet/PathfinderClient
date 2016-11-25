@@ -15,7 +15,7 @@ const actions = {
 
   'UPDATE_CHARACTER_ABILITY': (state, payload) => state.map(character => {
     return (character._id === payload.selected)
-      ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload.upate } }
+      ? { ...character, AbilityScores: { ...character.AbilityScores,  ...payload.update } }
       : character
   }),
 
