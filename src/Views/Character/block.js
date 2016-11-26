@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import { result } from 'lodash'
 import * as actions from '../../Redux/actions'
 import { connect } from 'react-redux'
+import ToolTip from 'rc-tooltip'
 
 class Content extends Component {
 
@@ -13,14 +14,22 @@ class Content extends Component {
       return <Block {...content} character={character} level={level + 1} key={key || 0} selected={selected} />
     else if (typeof content === 'string') {
       if (content[0] === '$') {
+        const value = result(character, content.slice(1))
+        let rendered = null
+
         if (editable) {
-          return <input key={key || 0} onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })} value={result(character, content.slice(1))} />
+          rendered = <input key={key || 0} onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })} value={value.value || value} />
         } else {
-          return result(character, content.slice(1))
+          rendered = value.value || value
         }
+        if (typeof value === 'object') {
+          rendered = <ToolTip placement='top' trigger={['hover']} overlay={<span>{value.description}</span>}>{rendered}</ToolTip>
+        }
+        return rendered
       } else {
         return <div key={key || 0} >{content}</div>
       }
+        
     }
   }
 
