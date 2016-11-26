@@ -7,22 +7,27 @@ export default [
   {
     title: 'Abilities',
     styles: { border: '2px solid blue' },
-    content: [
-      {
-        title: 'Strength',
-        content: [
-          { 
-            title: 'Score',
-            styles: { margin: '0 2px' },
-            content: '$AbilityScores.Strength'
-          },
-          { 
-            title: 'Modifier',
-            styles: { margin: '0 2px' },
-            content: '$AbilityModifiers.Strength'
-          }
-        ]
-      }
-    ]
+    content: {
+      styles: { display: 'flex', flexDirection: 'row', justifyContent: 'space-around' },
+      content: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'].map(Ability)
+    }
   }
 ]
+
+function Ability (ab) {
+  return {
+    title: ab,
+    content: [
+      {
+        title: 'Score',
+        styles: { margin: '0 2px' },
+        content: `$AbilityScores.${ab}`
+      },
+      {
+        title: 'Modifier',
+        styles: { margin: '0 2px' },
+        content: `$AbilityModifiers.${ab}`
+      }
+    ]
+  } 
+}

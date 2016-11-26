@@ -20,7 +20,7 @@ class Character extends Component {
       <div>
         {
           UI.map((block, idx) => (
-            <Block key={idx} {...block} character={character} />
+            <Block key={idx} {...block} character={character} level={1} />
           ))
         }
       </div>
