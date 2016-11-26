@@ -2,6 +2,7 @@ export default [
   {
     title: 'Name',
     styles: { border: '2px solid black' },
+    editable: 'updateCharacter',
     content: '$Name'
   },
   {
