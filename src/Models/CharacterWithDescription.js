@@ -17,9 +17,9 @@ export default class CharacterWithDescription extends Character {
       .reduce((num, key) => num + obj[key], 0)
   }
 
-  stringFor (obj, mod) {
+  stringFor (obj) {
     return Object.keys(obj)
-      .map((item) => `${item.Name}: ${item.Properties[mod]}`)
+      .map((item) => `${item}: ${obj[item]}`)
       .join(', ')
   }
 
@@ -30,13 +30,13 @@ export default class CharacterWithDescription extends Character {
       others
     )
     const value = this.valueFor(mods)
-    const description = this.stringFor(mods, mod)
+    const description = this.stringFor(mods)
 
     return this.returnWithDescripition(value, description)
   }
 
   get Initiative () {
-    this.CreateDescription('Initiative', {
+    return this.CreateDescription('Initiative', {
       Dexterity: this.AbilityModifiers.Dexterity
     })
   }

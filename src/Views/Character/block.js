@@ -3,6 +3,7 @@ import { result } from 'lodash'
 import * as actions from '../../Redux/actions'
 import { connect } from 'react-redux'
 import ToolTip from 'rc-tooltip'
+import 'rc-tooltip/assets/bootstrap.css'
 
 class Content extends Component {
 
@@ -18,9 +19,9 @@ class Content extends Component {
         let rendered = null
 
         if (editable) {
-          rendered = <input key={key || 0} onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })} value={value.value || value} />
+          rendered = <input key={key || 0} onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })} value={value.stat || value} />
         } else {
-          rendered = value.value || value
+          rendered = <span>{value.stat || value}</span>
         }
         if (typeof value === 'object') {
           rendered = <ToolTip placement='top' trigger={['hover']} overlay={<span>{value.description}</span>}>{rendered}</ToolTip>

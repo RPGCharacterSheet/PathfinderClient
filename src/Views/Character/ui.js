@@ -12,6 +12,11 @@ export default [
       styles: { display: 'flex', flexDirection: 'row', justifyContent: 'space-around' },
       content: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'].map(Ability)
     }
+  },
+  {
+    title: 'Initiative',
+    styles: { border: '2px solid green' },
+    content: '$Initiative'
   }
 ]
 
