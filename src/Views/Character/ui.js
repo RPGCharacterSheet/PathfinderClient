@@ -21,6 +21,7 @@ function Ability (ab) {
       {
         title: 'Score',
         styles: { margin: '0 2px' },
+        editable: 'updateCharacterAbility',
         content: `$AbilityScores.${ab}`
       },
       {
@@ -29,5 +30,5 @@ function Ability (ab) {
         content: `$AbilityModifiers.${ab}`
       }
     ]
-  } 
+  }
 }

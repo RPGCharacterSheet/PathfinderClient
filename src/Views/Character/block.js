@@ -1,23 +1,31 @@
 import React, {Component, PropTypes} from 'react'
 import { result } from 'lodash'
-class Block extends Component {
+import * as actions from '../../Redux/actions'
+import { connect } from 'react-redux'
 
-  contentToComponent (content, character, level) {
+class Content extends Component {
+
+  contentToComponent (overWrite) {
+    const { selected, content, character, level, editable, key } = Object.assign({}, this.props, overWrite)
     if (Array.isArray(content)) {
-      return content.map((b, idx) => this.contentToComponent(b, character, level))
+      return content.map((b, idx) => this.contentToComponent({ content: b, key: idx }))
     } else if (typeof content === 'object')
-      return <Block {...content} character={character} level={level + 1} />
+      return <Block {...content} character={character} level={level + 1} key={key || 0} selected={selected} />
     else if (typeof content === 'string') {
       if (content[0] === '$') {
-        return result(character, content.slice(1))
+        if (editable) {
+          return <input key={key || 0} onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })} value={result(character, content.slice(1))} />
+        } else {
+          return result(character, content.slice(1))
+        }
       } else {
-        return <div>{content}</div>
+        return <div key={key || 0} >{content}</div>
       }
     }
   }
 
   render () {
-    const { styles, title, content, character, level } = this.props
+    const { styles, title, level } = this.props
 
     return (
       <div style={Object.assign({ display: 'inline-block' }, styles)}>
@@ -26,18 +34,24 @@ class Block extends Component {
             ? React.createElement(`h${level}`, {children: title})
             : <span>{title}</span>
           : null}
-        {this.contentToComponent(content, character, level)}
+        {this.contentToComponent()}
       </div>
     )
   }
 }
 
-Block.propTypes = {
+Content.propTypes = {
+  selected: PropTypes.string,
+  editable: PropTypes.string,
   level: PropTypes.number,
   styles: PropTypes.object,
   title: PropTypes.string,
   content: PropTypes.any,
   character: PropTypes.object
 }
+
+const Block = connect(() => ({
+
+}), actions)(Content)
 
 export default Block

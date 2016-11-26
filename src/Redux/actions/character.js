@@ -19,7 +19,7 @@ export function updateCharacter (selected, update) {
     type: 'UPDATE_CHARACTER',
     payload: {
       selected,
-      update
+      update: update
     }
   }
 }
@@ -29,7 +29,7 @@ export function updateCharacterAbility (selected, update) {
     type: 'UPDATE_CHARACTER_ABILITY',
     payload: {
       selected,
-      update
+      update: Object.keys(update).reduce((obj, key) => Object.assign({}, { [key.split('.')[1]]: update[key] }), {})
     }
   }
 }
