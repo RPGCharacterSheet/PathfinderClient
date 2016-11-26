@@ -11,9 +11,9 @@ class Content extends Component {
     const { selected, content, character, level, editable, key } = Object.assign({}, this.props, overWrite)
     if (Array.isArray(content)) {
       return content.map((b, idx) => this.contentToComponent({ content: b, key: idx }))
-    } else if (typeof content === 'object')
+    } else if (typeof content === 'object') {
       return <Block {...content} character={character} level={level + 1} key={key || 0} selected={selected} />
-    else if (typeof content === 'string') {
+    } else if (typeof content === 'string') {
       if (content[0] === '$') {
         const value = result(character, content.slice(1))
         let rendered = null
