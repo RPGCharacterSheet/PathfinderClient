@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    width: 100%;
     position: fixed;
 }
 
@@ -9,6 +10,7 @@
 
     flex: 1 1 auto;
     overflow-y: auto;
+    overflow-x: hidden;
     min-height: 0px;
 
     list-style: none;
@@ -20,9 +22,8 @@
     justify-content: center;
 
     height: 100%;
-    width: 10%;
     padding: 0;
-    margin: 0;
+    margin: 0 2px;
 }
 
 .character-list {
@@ -31,6 +32,8 @@
     border-radius: 3px;
     border-style: solid;
     margin: 7px 29px 7px 0px;
+    max-width: 200px;
+    max-height: 200px;
 
     transition: all 150ms ease-in-out;
 }
@@ -45,6 +48,6 @@
 }
 
 .character {
-    width: 80%;
+    width: 90%;
     float: right;
 }
