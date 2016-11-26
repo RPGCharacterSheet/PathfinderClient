@@ -5,57 +5,37 @@ import './character.css'
 import { connect } from 'react-redux'
 import * as actions from '../../Redux/actions'
 
-import ChangableInput from './ChangableInput'
-
+// import ChangableInput from './ChangableInput'
+import Block from './block'
 import Models from '../../Models'
 class Character extends Component {
   render () {
+    const { user } = this.props
     const selected = this.props.routeParams.id
-    const character = new Models.Character(this.props.characters.find(ch => ch._id === selected))
+    const character = new Models.CharacterWithDescription(this.props.characters.find(ch => ch._id === selected))
     return (
       <div>
-        <h1>
-          <ChangableInput
-            label='Name'
-            value={character.Name}
-            onChange={(Name) => this.props.updateCharacter(selected, { Name })}
-          />
-        </h1>
-        <h2 style={{textAlign: 'center'}}>
-          Abilities
-        </h2>
-        <div className='abilities'>
-          {
-            Object.keys(character.AbilityScores).map(ability => (
-              <div key={ability} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <span>{ability}</span>
-                <input
-                  style={{width: '100%', margin: '6px 0px', textAlign: 'center'}}
-                  type='number'
-                  value={character.AbilityScores[ability]}
-                  onChange={({ target: { value } }) => this.props.updateCharacterAbility(selected, { [ability]: value })}
-                />
-                <span className='character-modifier' style={{width: '100%', textAlign: 'center'}}>
-                  {character.AbilityModifiers[ability]}
-                </span>
-              </div>
-            ))
-          }
-        </div>
+        {
+          user.UI.map((block, idx) => (
+            <Block key={idx} {...block} character={character} />
+          ))
+        }
       </div>
     )
   }
 }
 Character.propTypes = {
-  character: PropTypes.object,
+  user: PropTypes.object,
+  characters: PropTypes.array,
   updateCharacterAbility: PropTypes.func,
   updateCharacter: PropTypes.func,
-  routerParams: PropTypes.object
+  routeParams: PropTypes.object
 }
 
 export default connect(
   state => ({
-    characters: state.characters
+    characters: state.characters,
+    user: state.user
   }),
   actions
 )(Character)

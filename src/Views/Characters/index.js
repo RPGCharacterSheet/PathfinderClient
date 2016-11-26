@@ -15,8 +15,13 @@ class Characters extends Component {
       <section className='character-pane'>
         <ul className='characters'>
           {
-            characters.map(character => (
-              <CharacterListItem active={character._id === this.props.router.params.id} character={character} onCharacterSelect={this.props.onCharacterSelect} />
+            characters.map((character, idx) => (
+              <CharacterListItem
+                key={idx}
+                active={character._id === this.props.router.params.id}
+                character={character}
+                onCharacterSelect={this.props.onCharacterSelect}
+              />
             ))
           }
         </ul>
@@ -30,7 +35,7 @@ class Characters extends Component {
 Characters.propTypes = {
   children: PropTypes.element,
   onCharacterSelect: PropTypes.func,
-  characters: PropTypes.object,
+  characters: PropTypes.array,
   router: PropTypes.object
 }
 
