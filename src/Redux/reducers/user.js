@@ -13,8 +13,16 @@ const UI = [
       {
         title: 'Strength',
         content: [
-          '$AbilityScores.Strength',
-          '$AbilityModifiers.Strength'
+          { 
+            title: 'Score',
+            styles: { margin: '0 2px' },
+            content: '$AbilityScores.Strength'
+          },
+          { 
+            title: 'Modifier',
+            styles: { margin: '0 2px' },
+            content: '$AbilityModifiers.Strength'
+          }
         ]
       }
     ]
