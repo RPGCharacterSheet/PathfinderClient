@@ -4,6 +4,8 @@
   "private": true,
   "proxy": "http://localhost:58949/",
   "devDependencies": {
+    "jest": "^17.0.3",
+    "mocha": "^3.2.0",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
