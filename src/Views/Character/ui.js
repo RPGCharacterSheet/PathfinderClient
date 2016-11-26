@@ -21,13 +21,13 @@ function Ability (ab) {
     content: [
       {
         title: 'Score',
-        styles: { margin: '0 2px' },
+        styles: { margin: '0 2px', display: 'block' },
         editable: 'updateCharacterAbility',
         content: `$AbilityScores.${ab}`
       },
       {
         title: 'Modifier',
-        styles: { margin: '0 2px' },
+        styles: { margin: '0 2px', display: 'block' },
         content: `$AbilityModifiers.${ab}`
       }
     ]
