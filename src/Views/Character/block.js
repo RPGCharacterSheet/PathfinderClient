@@ -29,7 +29,6 @@ class Content extends Component {
       } else {
         return <div key={key || 0} >{content}</div>
       }
-        
     }
   }
 
