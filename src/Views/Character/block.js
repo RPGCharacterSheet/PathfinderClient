@@ -21,7 +21,11 @@ class Block extends Component {
 
     return (
       <div style={Object.assign({ display: 'inline-block' }, styles)}>
-        {title ? React.createElement(`h${level}`, {children: title}) : null}
+        {title
+          ? level < 7
+            ? React.createElement(`h${level}`, {children: title})
+            : <span>{title}</span>
+          : null}
         {this.contentToComponent(content, character, level)}
       </div>
     )
