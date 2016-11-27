@@ -49,7 +49,7 @@ export default class CharacterWithDescription extends Character {
   }
 
   get Encumbrance () {
-    const weight = this.GearWeight
+    const weight = this.GearWeight.stat
 
     const encumbranceArray = [25, 28.75, 32.5, 37.5, 43.75, 50, 57.5, 65, 75, 87.5 ]
     const maxLoad = (this.AbilityScores.Strength > 10)
