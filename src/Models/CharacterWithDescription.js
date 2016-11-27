@@ -1,4 +1,5 @@
 import Character from './Character'
+import { Loads } from './Enums'
 export default class CharacterWithDescription extends Character {
 
   returnWithDescripition (stat, description) {
@@ -43,24 +44,26 @@ export default class CharacterWithDescription extends Character {
   }
 
   // sum of all gear weight (WeightCounts == false means held in bag of holding)
-  get GearWeight(){
-    return this.returnWithDescripition(this.Inventory.reduce((i,j) => i + (j.WeightCounts?j.Weight:0), 0), '')
+  get GearWeight () {
+    return this.returnWithDescripition(this.Inventory.reduce((i, j) => i + (j.WeightCounts ? j.Weight : 0), 0), '')
   }
 
-  get Encumbrance(){    
-    const encumbranceArray = [25, 28.75,32.5, 37.5, 43.75, 50, 57.5, 65, 75, 87.5 ]
-    let maxLoad = this.AbilityScores.Strength * 10
-    if (str > 10)
-      maxLoad = encumbranceArray[this.AbilityScores.Strength % 10] * Math.pow(4, this.AbilityScores.Strength / 10)
-    let EncumbranceByWeight = Loads.Overloaded
-    if (maxLoad/3 >= GearWeight().stat)
-      EncumbranceByWeight = Loads.Light
-    else if (maxLoad/3*2 >= GearWeight().stat)
-      EncumbranceByWeight = Loads.Medium
-    else if (maxLoad >= GearWeight().stat)
-      EncumbranceByWeight = Loads.Heavy
+  get Encumbrance () {
+    const weight = this.GearWeight
 
-    let EncumbranceByArmor = Loads.Light
+    const encumbranceArray = [25, 28.75, 32.5, 37.5, 43.75, 50, 57.5, 65, 75, 87.5 ]
+    const maxLoad = (this.AbilityScores.Strength > 10)
+      ? encumbranceArray[this.AbilityScores.Strength % 10] * Math.pow(4, this.AbilityScores.Strength / 10)
+      : this.AbilityScores.Strength * 10
+
+    if (maxLoad / 3 >= weight)
+      return Loads.indexOf('Light')
+    else if (maxLoad / 3 * 2 >= weight)
+      return Loads.indexOf('Medium')
+    else if (maxLoad >= weight)
+      return Loads.indexOf('Heavy')
+    else
+      return Loads.indexOf('Overloaded')
   }
 
   get AllStats () {
