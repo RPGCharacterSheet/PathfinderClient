@@ -3,7 +3,7 @@ import CharacterWithDescription from '../Models/CharacterWithDescription'
 import blankCharacter from './Character'
 import blankItem from './InventoryItem'
 
-const { getBob, getLarry, GetBlankCharacter } = require('./CharactersForTesting')
+import { getBob, getLarry, GetBlankCharacter } from './CharactersForTesting'
 
 var assert = require('assert')
 
