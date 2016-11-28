@@ -4,16 +4,11 @@ import blankItem from './InventoryItem'
 import Enums from '../Models/Enums'
 const { Race, Size, Alignment } = Enums
 
-class CharacterMaker {
-constructor(){
-
-}
-
-  GetBlankCharacter () {
+export function GetBlankCharacter () {
     return new CharacterWithDescription(blankCharacter)
   }
 
-  GetBob(){
+export function GetBob(){
     let bob = this.GetBlankCharacter()
     bob.AbilityScores.Strength = 10 
     bob.AbilityScores.Constitution = 10 
@@ -25,7 +20,7 @@ constructor(){
     return bob
   }
 
-  GetLarry(){
+export function GetLarry(){
     let larry = this.GetBlankCharacter()
     larry.AbilityScores.Strength = 18 
     larry.AbilityScores.Constitution = 18 
@@ -36,5 +31,3 @@ constructor(){
     return larry
   }
 }
-
-module.exports = CharacterMaker
