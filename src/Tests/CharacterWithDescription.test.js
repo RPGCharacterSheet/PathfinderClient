@@ -3,6 +3,8 @@ import CharacterWithDescription from '../Models/CharacterWithDescription'
 import blankCharacter from './Character'
 import blankItem from './InventoryItem'
 
+var CharacterMaker = require('./CharactersForTesting.js');
+var creator = new CharacterMaker();
 
 var assert = require('assert')
 
@@ -36,4 +38,9 @@ it('Gear weights should add up correctly', () =>{
   assert.equal(7.5, char.GearWeight.stat)
   newItem.WeightCounts = false
   assert.equal(4, char.GearWeight.stat)
+})
+
+it('Bob should be ready for testing', () =>{  
+  let bob = creator.GetBob()
+  assert.equal(10, bob.AbilityScores.Strength)
 })

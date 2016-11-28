@@ -1,1 +1,37 @@
-{ "Owner": "", "Shared" : [], "Name" : "Empty", "CreatorName" : null, "Race" : 0, "Classes" : [], "AbilityScores" : { "Strength" : 18, "Constitution" : 13, "Dexterity" : 18, "Wisdom" : 14, "Intelligence" : 13, "Charisma" : 8 }, "Inventory" : [], "CharacterModifiers" : [], "SpellsKnown" : [], "Size" : 0, "MaxHP" : 0, "CurrentHP" : 0, "Gold" : 0.0, "XPCurrent" : 0, "XPNext" : 0, "Languages" : null, "Alignment" : 0, "Deity" : null, "Homeland" : null, "Age" : null, "Gender" : null, "Height" : null, "Weight" : null, "DamageReduction" : null, "Resistances" : null, "Immunities" : null, "Notes" : null }
+{ 
+  "Owner": "", 
+  "Shared" : [], 
+  "Name" : "Empty", 
+  "CreatorName" : null, 
+  "Race" : 0, 
+  "Classes" : [], 
+  "AbilityScores" : { 
+    "Strength" : 18, 
+    "Constitution" : 13, 
+    "Dexterity" : 18, 
+    "Wisdom" : 14, 
+    "Intelligence" : 13, 
+    "Charisma" : 8 
+    }, 
+  "Inventory" : [], 
+  "CharacterModifiers" : [], 
+  "SpellsKnown" : [], 
+  "Size" : 0, 
+  "MaxHP" : 0, 
+  "CurrentHP" : 0, 
+  "Gold" : 0.0, 
+  "XPCurrent" : 0, 
+  "XPNext" : 0, 
+  "Languages" : null, 
+  "Alignment" : 0, 
+  "Deity" : null, 
+  "Homeland" : null, 
+  "Age" : null, 
+  "Gender" : null, 
+  "Height" : null, 
+  "Weight" : null, 
+  "DamageReduction" : null, 
+  "Resistances" : null, 
+  "Immunities" : null, 
+  "Notes" : null 
+  }

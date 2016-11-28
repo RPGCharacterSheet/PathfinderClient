@@ -1,0 +1,40 @@
+import CharacterWithDescription from '../Models/CharacterWithDescription'
+import blankCharacter from './Character'
+import blankItem from './InventoryItem'
+import Enums from '../Models/Enums'
+const { Race, Size, Alignment } = Enums
+
+class CharacterMaker {
+constructor(){
+
+}
+
+  GetBlankCharacter () {
+    return new CharacterWithDescription(blankCharacter)
+  }
+
+  GetBob(){
+    let bob = this.GetBlankCharacter()
+    bob.AbilityScores.Strength = 10 
+    bob.AbilityScores.Constitution = 10 
+    bob.AbilityScores.Dexterity = 10 
+    bob.AbilityScores.Wisdom = 10 
+    bob.AbilityScores.Intelligence = 10 
+    bob.AbilityScores.Charisma = 10
+    bob.Race = Race.indexOf("Human")
+    return bob
+  }
+
+  GetLarry(){
+    let larry = this.GetBlankCharacter()
+    larry.AbilityScores.Strength = 18 
+    larry.AbilityScores.Constitution = 18 
+    larry.AbilityScores.Dexterity = 18 
+    larry.AbilityScores.Wisdom = 18 
+    larry.AbilityScores.Intelligence = 18 
+    larry.AbilityScores.Charisma = 18
+    return larry
+  }
+}
+
+module.exports = CharacterMaker
