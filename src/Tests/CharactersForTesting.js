@@ -9,7 +9,7 @@ export function GetBlankCharacter () {
 }
 
 export function GetBob(){
-  let bob = this.GetBlankCharacter()
+  let bob = GetBlankCharacter()
   
   bob.AbilityScores.Strength = 10 
   bob.AbilityScores.Constitution = 10 
@@ -27,7 +27,7 @@ export function GetBob(){
 }
 
 export function GetLarry(){
-  let larry = this.GetBlankCharacter()
+  let larry = GetBlankCharacter()
   larry.AbilityScores.Strength = 18 
   larry.AbilityScores.Constitution = 18 
   larry.AbilityScores.Dexterity = 18 
