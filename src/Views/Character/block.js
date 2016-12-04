@@ -31,13 +31,13 @@ class Content extends Component {
           <input
             key={key || 0}
             onChange={(event) => this.props[editable](selected, { [content.slice(1)]: event.target.value })}
-            value={value && value.stat || value}
+            value={(value) ? (value.stat || value) : 'empty'}
           />
         )
       } else {
         rendered = (
           <span>
-            {value && value.stat || value}
+            {(value) ? ('stat' in value) ? value.stat : value : 'empty'}
           </span>
         )
       }
