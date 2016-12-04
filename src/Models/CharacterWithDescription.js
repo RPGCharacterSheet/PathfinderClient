@@ -15,7 +15,7 @@ export default class CharacterWithDescription extends Character {
       Initiative: () => ({Dexterity: this.AbilityModifiers.Dexterity.stat}),
       CMD: () => ({
         base:  10,
-        Strength: this.AbilityModifiers.Strength.stat ,
+        Strength: this.AbilityModifiers.Strength.stat,
         Dexterity:this.AbilityModifiers.Dexterity.stat,
         Size:  this.SizeModifier || 0
       }),
@@ -67,28 +67,21 @@ export default class CharacterWithDescription extends Character {
       Swim:() => ({}),
       UseMagicDevice:() => ({})
     }
-    this._abilityScores = JSON.parse(JSON.stringify(this.AbilityScores))
-    this.AbilityScores = {}
+    this._abilityScores = { ...this.AbilityScores }
+
     this.defineGetters(this.AbilityScores, this.convertToBase(this._abilityScores))
 
-    this._abilityModifiers = Object
-      .getOwnPropertyNames(this.AbilityScores)
-      .reduce((obj, key) => Object.defineProperty(obj, key, {
-        get: () => this.GetAbilityModifier(this.AbilityScores[key].stat)
-      }), {})
-    this.AbilityModifiers = {}
+    this._abilityModifiers =  { ...this.AbilityModifiers }
     this.defineGetters(this.AbilityModifiers, this.convertToBase(this._abilityModifiers))
     this.defineGetters(this, Stats)
   }
 
-  GetAbilityModifier (i) { return Math.floor(i / 2) - 5 }
-
-  convertToBase(o) {
+  convertToBase(obj) {
     return Object
-      .getOwnPropertyNames(o)
+      .keys(this._abilityScores)
       .reduce((obj, key) => {
         return Object.defineProperty(obj, key, {
-          get: () =>  () => ({ base: o[key] })
+          get: () =>  () => ({ base: this._abilityScores[key] })
         })
       }, {})
   }

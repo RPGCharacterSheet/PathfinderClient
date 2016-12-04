@@ -13,7 +13,7 @@ function FixEnumForClass(classObj = { ClassSkills: [] }) {
   }
 }
 
-export default class Class{
+export default class Class {
    constructor (obj) {
     Object.assign(this, {
       Level: 1,

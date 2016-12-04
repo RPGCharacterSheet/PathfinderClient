@@ -12,5 +12,4 @@ export default class Character {
       Classes: obj.Classes.map(c => new Class(c))
     })
   }
-
 }
