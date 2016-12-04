@@ -74,5 +74,5 @@ assert.equal(0, bob.Initiative.stat)
 
 it('CMD math should work', () =>{
   let larry = GetLarry()
-  assert.equal(16, larry.CMD)
+  assert.equal(18, larry.CMD.stat)
 })

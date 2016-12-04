@@ -12,11 +12,11 @@ export default class CharacterWithDescription extends Character {
     super(obj)
 
     const Stats = {
-      Initiative: () => ({Dexterity: this.AbilityModifiers.Dexterity}),
+      Initiative: () => ({Dexterity: this.AbilityModifiers.Dexterity.stat}),
       CMD: () => ({
         base:  10,
-        Strength:  this.AbilityModifiers.Stength,
-        Dexterity:  this.AbilityModifiers.Dexterity,
+        Strength: this.AbilityModifiers.Strength.stat,
+        Dexterity:this.AbilityModifiers.Dexterity.stat,
         Size:  this.SizeModifier || 0
       }),
       Encumbrance:() => ({}),
@@ -67,21 +67,28 @@ export default class CharacterWithDescription extends Character {
       Swim:() => ({}),
       UseMagicDevice:() => ({})
     }
-    this._abilityScores = { ...this.AbilityScores }
-
+    this._abilityScores = JSON.parse(JSON.stringify(this.AbilityScores))
+    this.AbilityScores = {}
     this.defineGetters(this.AbilityScores, this.convertToBase(this._abilityScores))
 
-    this._abilityModifiers =  { ...this.AbilityModifiers }
+    this._abilityModifiers = Object
+      .getOwnPropertyNames(this.AbilityScores)
+      .reduce((obj, key) => Object.defineProperty(obj, key, {
+        get: () => this.GetAbilityModifier(this.AbilityScores[key].stat)
+      }), {})
+    this.AbilityModifiers = {}
     this.defineGetters(this.AbilityModifiers, this.convertToBase(this._abilityModifiers))
     this.defineGetters(this, Stats)
   }
 
-  convertToBase(obj) {
+  GetAbilityModifier (i) { return Math.floor(i / 2) - 5 }
+
+  convertToBase(o) {
     return Object
-      .keys(this._abilityScores)
+      .getOwnPropertyNames(o)
       .reduce((obj, key) => {
         return Object.defineProperty(obj, key, {
-          get: () =>  () => ({ base: this._abilityScores[key] })
+          get: () =>  () => ({ base: o[key] })
         })
       }, {})
   }
