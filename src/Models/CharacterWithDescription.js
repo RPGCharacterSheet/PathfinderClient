@@ -71,17 +71,24 @@ export default class CharacterWithDescription extends Character {
 
     this.defineGetters(this.AbilityScores, this.convertToBase(this._abilityScores))
 
-    this._abilityModifiers =  { ...this.AbilityModifiers }
+    this._abilityModifiers = Object
+      .getOwnPropertyNames(this.AbilityScores)
+      .reduce((val, key) => Object.defineProperty(val, key, {
+        get: () => this.getModifer(this.AbilityScores[key].stat)
+      }), {})
+    this.AbilityModifiers = {}
     this.defineGetters(this.AbilityModifiers, this.convertToBase(this._abilityModifiers))
     this.defineGetters(this, Stats)
   }
 
-  convertToBase(obj) {
+  getModifer(val) { return Math.floor( val / 2 ) - 5 }
+
+  convertToBase(o) {
     return Object
-      .keys(this._abilityScores)
+      .getOwnPropertyNames(o)
       .reduce((obj, key) => {
         return Object.defineProperty(obj, key, {
-          get: () =>  () => ({ base: this._abilityScores[key] })
+          get: () =>  () => ({ base: o[key] })
         })
       }, {})
   }
