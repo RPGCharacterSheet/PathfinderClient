@@ -15,7 +15,7 @@ export default class CharacterWithDescription extends Character {
       Initiative: () => ({Dexterity: this.AbilityModifiers.Dexterity}),
       CMD: () => ({
         base:  10,
-        Strength:  this.AbilityModifiers.Strength,
+        Strength:  this.AbilityModifiers.Stength,
         Dexterity:  this.AbilityModifiers.Dexterity,
         Size:  this.SizeModifier || 0
       }),

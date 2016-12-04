@@ -48,27 +48,21 @@ it('Bob should be ready for testing', () =>{
 
 it('Larry should be ready for testing', () =>{
   let larry = GetLarry()
-  assert.equal(5, larry.Inventory.length)
+  assert.equal(6, larry.Inventory.length)
   assert.equal(18, larry.AbilityScores.Charisma.stat)
   assert.equal(2, larry.Classes.length)
   assert.equal(5, larry.Classes.find((c) => c.Name === "Inquisitor").Level)
   assert.equal(7, larry.FortSave.stat) // 4 from inquisitor, 2 from cavalier, 1 from gear
 })
 
-it('Gear should affect stats', ()=>{
+it('Larrys gear should affect his stats', ()=>{
   let larry = GetLarry()
   assert.equal(18, larry.AbilityScores.Charisma.stat)
   larry.Inventory.find((item) => item.Name === "Headband of Alluring Charisma").IsEquipped = true
   assert.equal(24, larry.AbilityScores.Charisma.stat)
-  larry.Inventory.find((item) => item.Name === "Headband of Alluring Charisma").IsEquipped = false
-  assert.equal(18, larry.AbilityScores.Charisma.stat)
   assert.equal(7, larry.FortSave.stat)
-  larry.Inventory.find((item) => item.Name === "Cloak of Resistance").Properties.FortSave = 5
-  assert.equal(11, larry.FortSave.stat)
-})
-
-it('Class levels affect stats', () => {
-  
+  larry.Inventory.find((item) => item.Name === "Cloak of Resistance").IsEquipped = false
+  //assert.equal(6, larry.FortSave.stat)
 })
 
 it('Initiative math should work', () =>{
@@ -80,5 +74,5 @@ assert.equal(0, bob.Initiative.stat)
 
 it('CMD math should work', () =>{
   let larry = GetLarry()
-  assert.equal(16, larry.CMD.stat)
+  assert.equal(16, larry.CMD)
 })
