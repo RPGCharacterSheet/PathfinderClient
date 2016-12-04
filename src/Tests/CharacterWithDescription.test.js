@@ -1,17 +1,16 @@
 /* global it */
 import CharacterWithDescription from '../Models/CharacterWithDescription'
 import blankCharacter from './Character'
-import blankItem from './InventoryItem'
+import InventoryItem from './InventoryItem'
 
-Object.freeze(blankItem)
 Object.freeze(blankCharacter)
 
 import { GetBob, GetLarry, GetBlankCharacter } from './CharactersForTesting'
 
 var assert = require('assert')
 
-function getBlankItem(values) {
-  return Object.create(Object.assign({}, blankItem, values))
+export function getBlankItem(obj){
+  return new InventoryItem(obj)
 }
 
 it('Should be able to create a blank character', () => {
@@ -26,11 +25,13 @@ it('Blank character should be immutable', () =>{
 it('Gear weights should add up correctly', () =>{
   let char = GetBlankCharacter()
   assert.equal(0, char.GearWeight.stat)
-  let newItem = getBlankItem()
-  newItem.Weight = 3.5
+  let newItem = getBlankItem({
+    Weight: 3.5
+  })
   char.Inventory = [ ...char.Inventory, newItem]
-  let newItem2 = getBlankItem()
-  newItem2.Weight=4
+  let newItem2 = getBlankItem({
+    Weight: 4
+  })
   char.Inventory.push(newItem2)
   assert.equal(2, char.Inventory.length)
   assert.equal(7.5, char.GearWeight.stat)
@@ -58,18 +59,35 @@ it('Larry should be ready for testing', () =>{
 it('Larrys gear should affect his stats', ()=>{
   let larry = GetLarry()
   assert.equal(18, larry.AbilityScores.Charisma.stat)
-  larry.Inventory.find((item) => item.Name === "Headband of Alluring Charisma").IsEquipped = true
+  larry.Inventory = larry.Inventory.map(i => ({ ...i, IsEquipped: true }))
   assert.equal(24, larry.AbilityScores.Charisma.stat)
+  larry.Inventory = larry.Inventory.map(i => ({ ...i, IsEquipped: false }))
+  assert.equal(18, larry.AbilityScores.Charisma.stat)
+
+  assert.equal(6, larry.FortSave.stat)
+  larry.Inventory = larry.Inventory.map(i => ({ ...i, IsEquipped: true }))
   assert.equal(7, larry.FortSave.stat)
-  larry.Inventory.find((item) => item.Name === "Cloak of Resistance").IsEquipped = false
-  //assert.equal(6, larry.FortSave.stat)
+  larry.Inventory = larry.Inventory.map(i => ({ ...i, IsEquipped: false }))
+  assert.equal(6, larry.FortSave.stat)
+})
+
+it('Class levels should affect stats', () =>{
+  let bob = GetBob()
+  assert.equal(2, bob.FortSave.stat)
+  assert.equal(0, bob.WillSave.stat)
+  assert.equal(0, bob.ReflexSave.stat)
+  bob.Classes[0].Level = 4
+  assert.equal(4, bob.FortSave.stat)
+  assert.equal(1, bob.WillSave.stat)
+  assert.equal(1, bob.ReflexSave.stat)
 })
 
 it('Initiative math should work', () =>{
 let larry = GetLarry()
+larry.Inventory.find((item) => item.Name === "Gloves of Greater Initiative").IsEquipped = false
 assert.equal(4, larry.Initiative.stat)
-let bob = GetBob()
-assert.equal(0, bob.Initiative.stat)
+larry.Inventory.find((item) => item.Name === "Gloves of Greater Initiative").IsEquipped = true
+assert.equal(8, larry.Initiative.stat)
 })
 
 it('CMD math should work', () =>{

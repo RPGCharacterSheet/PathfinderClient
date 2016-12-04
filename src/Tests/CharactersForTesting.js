@@ -1,11 +1,10 @@
 import CharacterWithDescription from '../Models/CharacterWithDescription'
 import blankCharacter from './Character'
-import blankItem from './InventoryItem'
+import InventoryItem from './InventoryItem'
 import Enums from '../Models/Enums'
 import Class from '../Models/Class'
 import Classes from '../Models/Classes'
 const { Race, Size, Alignment, SaveGrowth } = Enums
-Object.freeze(blankItem)
 Object.freeze(blankCharacter)
 
 
@@ -14,7 +13,7 @@ export function GetBlankCharacter () {
 }
 
 export function getBlankItem(obj){
-  return Object.create({ ...blankItem, ...obj })
+  return new InventoryItem(obj)
 }
 
 export function GetBob(){
@@ -50,6 +49,10 @@ export function GetLarry(){
     new Class({ ...Classes.Inquisitor, Level: 5 }),
     new Class(Classes.Cavalier)
   ]
+  larry.Inventory = [
+    ...larry.Inventory,
+    ...Array.from({length:3}).map(() => getBlankItem())
+  ]
   larry.Inventory.push(getBlankItem({
     Name: "Cloak of Resistance",
     IsEquipped: true,
@@ -70,9 +73,14 @@ export function GetLarry(){
       Charisma:6
     }
   }))
-  larry.Inventory = [
-    ...larry.Inventory,
-    ...Array.from({length:4}).map(() => getBlankItem())
-  ]
+  larry.Inventory.push(getBlankItem({
+    Name: "Gloves of Greater Initiative",
+    IsEquipped: false,
+    Weight: 1,
+    GoldValue: 18000,
+    Properties: {
+      Initiative:4
+    }
+  }))
   return larry
 }
