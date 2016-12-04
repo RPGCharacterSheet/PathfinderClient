@@ -53,8 +53,8 @@ export function GetLarry(){
   larry.Inventory.push(getBlankItem({
     Name: "Cloak of Resistance",
     IsEquipped: true,
-    Weight: 5,
-    GoldValue: 100.5,
+    Weight: 1,
+    GoldValue: 1000,
     Properties: {
       FortSave:1,
       WillSave:1,
@@ -64,15 +64,15 @@ export function GetLarry(){
   larry.Inventory.push(getBlankItem({
     Name: "Headband of Alluring Charisma",
     IsEquipped: false,
-    Weight: 5,
-    GoldValue: 18000,
+    Weight: 1,
+    GoldValue: 36000,
     Properties: {
       Charisma:6
     }
   }))
   larry.Inventory = [
     ...larry.Inventory,
-    ...Array.from({length:4}).map(() => getBlankItem())
+    ...Array.from({length:3}).map(() => getBlankItem())
   ]
   return larry
 }
