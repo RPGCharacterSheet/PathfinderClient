@@ -17,6 +17,24 @@ export default [
     title: 'Initiative',
     styles: { border: '2px solid green' },
     content: '$Initiative'
+  },
+  {
+    title: 'Saves',
+    styles: { },
+    content: [
+      {
+        title: 'Fort Save',
+        content: '$FortSave'
+      },
+      {
+        title: 'Will Save',
+        content: '$WillSave'
+      },
+      {
+        title: 'Reflex Save',
+        content: '$ReflexSave'
+      }
+    ]
   }
 ]
 
