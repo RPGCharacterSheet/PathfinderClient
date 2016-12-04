@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Unchained Monk", "HitDice" : 10, "BABGrowth" : 1.0, "FortGrowth" : 0, "ReflexGrowth" : 0, "WillGrowth" : 1, "SkillGrowth" : 4, "ClassSkills" : [24, 27, 28, 32, 36, 41, 46, 48, 49, 50, 51, 52, 55, 57], "SpellCastingBonus" : null }

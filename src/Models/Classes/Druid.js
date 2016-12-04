@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Druid", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 0, "ReflexGrowth" : 1, "WillGrowth" : 0, "SkillGrowth" : 4, "ClassSkills" : [27, 28, 33, 34, 35, 40, 43, 48, 50, 51, 54, 56, 57], "SpellCastingBonus" : 3 }

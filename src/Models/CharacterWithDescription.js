@@ -2,70 +2,100 @@ import Character from './Character'
 import { Loads } from './Enums'
 export default class CharacterWithDescription extends Character {
 
+  AddUpClass(key) {
+    return this.Classes.reduce((saves, c) => {
+      return { ...saves, [c.Name]: c[key] }
+    }, {})
+  }
+
   constructor (obj) {
     super(obj)
 
-    const allValues = {
-      Initiative: {Dexterity: this.AbilityModifiers.Dexterity},
-      CMD: {
-        base: 10,
-        Strength: this.AbilityModifiers.Stength,
-        Dexterity: this.AbilityModifiers.Dexterity,
-        Size: this.SizeModifier || 0
+    const Stats = {
+      Initiative: () => ({Dexterity: this.AbilityModifiers.Dexterity}),
+      CMD: () => ({
+        base:  10,
+        Strength:  this.AbilityModifiers.Stength,
+        Dexterity:  this.AbilityModifiers.Dexterity,
+        Size:  this.SizeModifier || 0
+      }),
+      Encumbrance:() => ({}),
+      AC:() => ({}),
+      TouchAC:() => ({}),
+      FlatFootedAC:() => ({}),
+      SpellResist:() => ({}),
+      FortSave:() => {
+        return this.AddUpClass('FortSave')
       },
-      Encumbrance: {},
-      AC: {},
-      TouchAC: {},
-      FlatFootedAC: {},
-      SpellResist: {},
-      FortSave: {},
-      ReflexSave: {},
-      WillSave: {},
-      BAB: {},
-      Speed: {},
-      Acrobatics: {},
-      Appraise: {},
-      Bluff: {},
-      Climb: {},
-      Craft: {},
-      Diplomacy: {},
-      DisableDevice: {},
-      Disguise: {},
-      EscapeArtist:{},
-      Fly:{},
-      HandleAnimal:{},
-      Heal:{},
-      Intimidate:{},
-      KnowledgeArcana:{},
-      KnowledgeDungeoneering:{},
-      KnowledgeEngineering:{},
-      KnowledgeGeography:{},
-      KnowledgeHistory:{},
-      KnowledgeLocal:{},
-      KnowledgeNature:{},
-      KnowledgeNobility:{},
-      KnowledgePlanes:{},
-      KnowledgeReligion:{},
-      Linguistics:{},
-      Perception:{},
-      Perform:{},
-      Profession:{},
-      Ride:{},
-      SenseMotive:{},
-      SleightOfHand:{},
-      Spellcraft:{},
-      Stealth:{},
-      Survival:{},
-      Swim:{},
-      UseMagicDevice:{}
+      ReflexSave:() => this.AddUpClass('ReflexSave'),
+      WillSave:() => this.AddUpClass('WillSave'),
+      BAB:() => ({}) ,
+      Speed:() => ({}),
+      Acrobatics:() => ({}),
+      Appraise:() => ({}),
+      Bluff:() => ({}),
+      Climb:() => ({}),
+      Craft:() => ({}),
+      Diplomacy:() => ({}),
+      DisableDevice:() => ({}),
+      Disguise:() => ({}),
+      EscapeArtist:() => ({}),
+      Fly:() => ({}),
+      HandleAnimal:() => ({}),
+      Heal:() => ({}),
+      Intimidate:() => ({}),
+      KnowledgeArcana:() => ({}),
+      KnowledgeDungeoneering:() => ({}),
+      KnowledgeEngineering:() => ({}),
+      KnowledgeGeography:() => ({}),
+      KnowledgeHistory:() => ({}),
+      KnowledgeLocal:() => ({}),
+      KnowledgeNature:() => ({}),
+      KnowledgeNobility:() => ({}),
+      KnowledgePlanes:() => ({}),
+      KnowledgeReligion:() => ({}),
+      Linguistics:() => ({}),
+      Perception:() => ({}),
+      Perform:() => ({}),
+      Profession:() => ({}),
+      Ride:() => ({}),
+      SenseMotive:() => ({}),
+      SleightOfHand:() => ({}),
+      Spellcraft:() => ({}),
+      Stealth:() => ({}),
+      Survival:() => ({}),
+      Swim:() => ({}),
+      UseMagicDevice:() => ({})
     }
-    Object
-      .keys(allValues)
-      .forEach(key => {
-        Object.defineProperty(this, key, {
-          get: () => this.CreateDescription(key, allValues[key])
+    this._abilityScores = { ...this.AbilityScores }
+
+    this.defineGetters(this.AbilityScores, this.convertToBase(this._abilityScores))
+
+    this._abilityModifiers =  { ...this.AbilityModifiers }
+    this.defineGetters(this.AbilityModifiers, this.convertToBase(this._abilityModifiers))
+    this.defineGetters(this, Stats)
+  }
+
+  convertToBase(obj) {
+    return Object
+      .keys(this._abilityScores)
+      .reduce((obj, key) => {
+        return Object.defineProperty(obj, key, {
+          get: () =>  () => ({ base: this._abilityScores[key] })
         })
       }, {})
+  }
+
+  defineGetters(holder, lookup) {
+    return Object
+      .getOwnPropertyNames(lookup)
+      .forEach((key) => {
+        return Object.defineProperty(holder, key, {
+          get: () => {
+            return this.CreateDescription(key, lookup[key]())
+          }
+        })
+      })
   }
 
   returnWithDescripition (stat, description) {
@@ -75,7 +105,7 @@ export default class CharacterWithDescription extends Character {
   itemsWithModifier (mod) {
     return this
       .Inventory
-      .filter(item => mod in item.Properties)
+      .filter(item => mod in item.Properties && item.IsEquipped)
       .reduce((obj, item) => Object.assign({}, obj, {[item.Name]: item.Properties[mod]}), {})
   }
 
@@ -87,12 +117,12 @@ export default class CharacterWithDescription extends Character {
   }
 
   valueFor (obj) {
-    return Object.keys(obj)
+    return Object.getOwnPropertyNames(obj)
       .reduce((num, key) => num + obj[key], 0)
   }
 
   stringFor (obj) {
-    return Object.keys(obj)
+    return Object.getOwnPropertyNames(obj)
       .map((item) => `${item}: ${obj[item]}`)
       .join(', ')
   }

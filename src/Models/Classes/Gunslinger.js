@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Gunslinger", "HitDice" : 10, "BABGrowth" : 1.0, "FortGrowth" : 0, "ReflexGrowth" : 0, "WillGrowth" : 1, "SkillGrowth" : 4, "ClassSkills" : [24, 26, 27, 28, 34, 35, 36, 39, 42, 48, 50, 51, 53, 56, 57], "SpellCastingBonus" : null }

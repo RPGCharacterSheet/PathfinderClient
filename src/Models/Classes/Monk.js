@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Monk", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 0, "ReflexGrowth" : 0, "WillGrowth" : 0, "SkillGrowth" : 4, "ClassSkills" : [24, 27, 28, 32, 36, 41, 46, 48, 49, 50, 51, 52, 55, 57], "SpellCastingBonus" : null }

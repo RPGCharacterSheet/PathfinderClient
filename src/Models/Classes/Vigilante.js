@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Vigilante", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 1, "ReflexGrowth" : 0, "WillGrowth" : 0, "SkillGrowth" : 6, "ClassSkills" : [24, 25, 26, 27, 28, 29, 30, 31, 32, 36, 38, 39, 42, 48, 49, 50, 51, 52, 53, 55, 56, 57, 58], "SpellCastingBonus" : null }

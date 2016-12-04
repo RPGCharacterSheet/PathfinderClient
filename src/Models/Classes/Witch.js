@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Witch", "HitDice" : 6, "BABGrowth" : 0.5, "FortGrowth" : 1, "ReflexGrowth" : 1, "WillGrowth" : 0, "SkillGrowth" : 2, "ClassSkills" : [28, 33, 35, 36, 37, 41, 43, 45, 50, 54, 58], "SpellCastingBonus" : 4 }

@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Cleric", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 0, "ReflexGrowth" : 1, "WillGrowth" : 0, "SkillGrowth" : 2, "ClassSkills" : [25, 28, 29, 35, 37, 41, 44, 45, 46, 47, 50, 52, 54], "SpellCastingBonus" : 3 }

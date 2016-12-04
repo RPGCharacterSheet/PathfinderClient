@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Fighter", "HitDice" : 10, "BABGrowth" : 1.0, "FortGrowth" : 0, "ReflexGrowth" : 1, "WillGrowth" : 1, "SkillGrowth" : 2, "ClassSkills" : [27, 28, 34, 36, 38, 39, 50, 51, 56, 57], "SpellCastingBonus" : null }

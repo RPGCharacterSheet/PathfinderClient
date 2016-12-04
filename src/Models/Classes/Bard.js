@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Bard", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 1, "ReflexGrowth" : 0, "WillGrowth" : 0, "SkillGrowth" : 6, "ClassSkills" : [24, 26, 27, 28, 29, 31, 32, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 53, 54, 55, 58], "SpellCastingBonus" : 5 }

@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Ranger", "HitDice" : 10, "BABGrowth" : 1.0, "FortGrowth" : 0, "ReflexGrowth" : 0, "WillGrowth" : 1, "SkillGrowth" : 6, "ClassSkills" : [27, 28, 34, 35, 36, 38, 40, 43, 48, 50, 51, 54, 55, 56, 57], "SpellCastingBonus" : 3 }

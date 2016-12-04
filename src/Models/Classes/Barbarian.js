@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Barbarian", "HitDice" : 12, "BABGrowth" : 1.0, "FortGrowth" : 0, "ReflexGrowth" : 1, "WillGrowth" : 1, "SkillGrowth" : 4, "ClassSkills" : [24, 27, 28, 34, 36, 43, 48, 51, 56, 57], "SpellCastingBonus" : null }

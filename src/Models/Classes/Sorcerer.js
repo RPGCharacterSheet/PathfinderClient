@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Sorcerer", "HitDice" : 6, "BABGrowth" : 0.5, "FortGrowth" : 1, "ReflexGrowth" : 1, "WillGrowth" : 0, "SkillGrowth" : 2, "ClassSkills" : [25, 26, 28, 33, 36, 37, 50, 54, 58], "SpellCastingBonus" : 5 }

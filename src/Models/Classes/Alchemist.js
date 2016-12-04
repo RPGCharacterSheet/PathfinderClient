@@ -1,0 +1,1 @@
+export default { "Level": 1, "Name" : "Alchemist", "HitDice" : 8, "BABGrowth" : 0.75, "FortGrowth" : 0, "ReflexGrowth" : 0, "WillGrowth" : 1, "SkillGrowth" : 4, "ClassSkills" : [25, 28, 30, 33, 35, 37, 43, 48, 50, 53, 54, 56, 58], "SpellCastingBonus" : 4 }
